@@ -1,1 +1,11 @@
 // Classes like centering etc
+
+.flex--centered{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tall{
+    min-height: 100vh;
+}
