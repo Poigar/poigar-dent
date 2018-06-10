@@ -159,6 +159,8 @@ class PagesController extends AbstractController
         if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
         if( $session->get('user_permission', -1) == 1 ) return $this->redirectToRoute('schedule');
 
+        $user_id = $session->get('user_id');
+
         $repository = $this->getDoctrine()->getRepository(Appointment::class);
         $appointments = $repository->findBy(
             ['doctor' => $user_id]

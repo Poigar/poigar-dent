@@ -55,3 +55,9 @@ my_schedule:
     controller: App\Controller\PagesController::my_schedule
     defaults:
         template: 'my_schedule.html.twig'
+
+add_appointment_action:
+    path: add_appointment_action
+    controller: App\Controller\PagesController::add_appointment_action
+    defaults:
+        template: 'my_schedule.html.twig'

@@ -5,14 +5,14 @@
     <div class="container">
         <div class="card mb-5">
             <div class="card-body">
-                <table class="table table-striped table-bordered">
+                <table class="table table-striped table-bordered table-hover">
                     <tbody>
 
                         {% for key in range(0,23) %}
                             
                             <tr class="employee">
                                 <td width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
-                                <td scope="row"> Random thing </td>
+                                <td scope="row" data-toggle="modal" data-target="#addAppointment"></td>
                             </tr>
                             
                         {% endfor %}
@@ -22,4 +22,42 @@
             </div>
         </div>
     </div>
+</div>
+
+
+
+
+
+<div class="modal fade " id="addAppointment" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add a new appointment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <form action="{{ path('add_appointment_action') }}">
+
+            <div class="form-group">
+                <label for="name">Patient's full name</label>
+                <input type="text" class="form-control" id="name" name="name">
+            </div>
+
+            <div class="form-group">
+                <label for="duration">Duration</label>
+                <input type="number" class="form-control" id="duration" name="duration">
+            </div>
+
+            <button type="submit" class="btn btn-primary float-right">Submit</button>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
 </div>
