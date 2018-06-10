@@ -95,7 +95,7 @@ class PagesController extends AbstractController
         for($i = 0; $i<24*7; $i++) $defaultSchedule = $defaultSchedule."0";
         $newUser->setSchedulePattern( $defaultSchedule );
 
-        $entityManager->persist($product);
+        $entityManager->persist($newUser);
         $entityManager->flush();
 
         return $this->redirectToRoute('employees');
