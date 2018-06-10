@@ -77,4 +77,27 @@ class PagesController extends AbstractController
             'controller_name' => 'PagesController',
         ]);
     }
+
+    public function add_employee_action(){
+        if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
+        
+        $request = Request::createFromGlobals();
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $newUser = new Entity();
+        $newUser->setFirstName( $request->query->get('first_name') );
+        $newUser->setLastName( $request->query->get('last_name') );
+        $newUser->setPost( $request->query->get('post') );
+        $newUser->setPassword( $request->query->get('password') );
+        $newUser->setEmail( $request->query->get('email') );
+
+        $defaultSchedule = "";
+        for($i = 0; $i<24*7; $i++) $defaultSchedule = $defaultSchedule."0";
+        $newUser->setSchedulePattern( $defaultSchedule );
+
+        $entityManager->persist($product);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('employees');
+    }
 }
