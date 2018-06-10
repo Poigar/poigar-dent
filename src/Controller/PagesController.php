@@ -176,11 +176,15 @@ class PagesController extends AbstractController
         if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
         if( $session->get('user_permission', -1) == 1 ) return $this->redirectToRoute('schedule');
         
+        $request = Request::createFromGlobals();
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository(Appointment::class);
+
         $user_id = $session->get('user_id');
 
-        $user = getUserById($user_id);
+        $user = $this->getUserById($user_id);
 
-        $date = $request->query->get('date');
+        $date = $request->query->get('date', date("Y-m-d"));
 
         $sameDayAppointments = $repository->findBy(
             ['doctor' => $user_id],
@@ -207,8 +211,7 @@ class PagesController extends AbstractController
         if( $conflict==1 ) return $this->redirectToRoute('my_schedule', array('error' => 'time_reserved'));
         if( $conflict==2 ) return $this->redirectToRoute('my_schedule', array('error' => 'past_midnight'));
 
-        $request = Request::createFromGlobals();
-        $entityManager = $this->getDoctrine()->getManager();
+        
 
         $newAppointment = new Employee();
         $newAppointment->setName( $request->query->get('name') );
@@ -238,7 +241,7 @@ class PagesController extends AbstractController
 
         $user_id = $session->get('user_id');
 
-        $user = getUserById($user_id);
+        $user = $this->getUserById($user_id);
 
         $date = $request->query->get('date');
 

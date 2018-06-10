@@ -11,17 +11,17 @@
         <form action="{{ path('login_action') }}">
 
             <div id="login__error" class="alert alert-danger text-center" role="alert" style="display: none;">
-                <span class="login__error">Wrong username or password!</span>
+                <span class="login__error">Wrong email or password!</span>
             </div>
 
             <div class="form-group">
-                <label for="login_username">Username</label>
-                <input type="text" class="form-control" name="login_username" id="login_username" aria-describedby="username" placeholder="Enter email">
+                <label for="login_username">Email</label>
+                <input type="text" class="form-control" name="login_username" id="login_username" aria-describedby="username">
             </div>
 
             <div class="form-group">
                 <label for="login_password">Password</label>
-                <input type="password" class="form-control" name="login_password" id="login_password" placeholder="Enter password">
+                <input type="password" class="form-control" name="login_password" id="login_password">
             </div>
 
             <button id="js-login-submit" type="submit" class="btn btn-primary">Login</button>
