@@ -176,7 +176,30 @@ class PagesController extends AbstractController
 
         $date = $request->query->get('date');
 
-        $dow = date('w', $date);
+        $sameDayAppointments = $repository->findBy(
+            ['doctor' => $user_id],
+            ['date' => $date]
+        );
+
+        $s = $request->query->get('time');
+        $b = $s + $request->query->get('duration') - 1;
+
+        $conflict = 0;
+
+        if($b>23) $conflict = 2;
+
+        foreach($sameDayAppointments as $appointment){
+            $ss = $appointment->getTime();
+            $bb = $ss + $appointment->getDuration() - 1;
+
+            if( $bb<$s || $ss>$b ){
+                } else {
+                    $conflict = 1;
+                }
+        }
+
+        if( $conflict==1 ) return $this->redirectToRoute('my_schedule', array('error' => 'time_reserved'));
+        if( $conflict==2 ) return $this->redirectToRoute('my_schedule', array('error' => 'past_midnight'));
 
         $request = Request::createFromGlobals();
         $entityManager = $this->getDoctrine()->getManager();
