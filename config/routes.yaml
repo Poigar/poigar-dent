@@ -37,3 +37,15 @@ delete_employee_action:
     controller: App\Controller\PagesController::delete_employee_action
     defaults:
         template: 'employees.html.twig'
+
+edit_employee_action:
+    path: edit_employee_action/{id}
+    controller: App\Controller\PagesController::edit_employee_action
+    defaults:
+        template: 'employees.html.twig'
+
+schedule:
+    path: schedule
+    controller: App\Controller\PagesController::schedule
+    defaults:
+        template: 'schedule.html.twig'

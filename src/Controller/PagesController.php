@@ -71,7 +71,6 @@ class PagesController extends AbstractController
         if( $session->get('user_permission', -1) != 1 ) return $this->redirectToRoute('schedule');
 
         $repository = $this->getDoctrine()->getRepository(Employee::class);
-
         $users = $repository->findAll();
 
         return $this->render('pages/employees.html.twig', [
@@ -142,4 +141,17 @@ class PagesController extends AbstractController
         
         return $this->redirectToRoute('employees');
     }
+
+    public function schedule(SessionInterface $session){
+        if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
+
+        $repository = $this->getDoctrine()->getRepository(Employee::class);
+        $users = $repository->findAll();
+
+        return $this->render('pages/schedule.html.twig', [
+            'controller_name' => 'PagesController',
+            'users' => $users,
+        ]);
+    }
+
 }
