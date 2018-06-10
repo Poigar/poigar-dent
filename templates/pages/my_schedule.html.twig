@@ -29,12 +29,54 @@
                             {% for appointment in appointments %}
 
                                 {% if(appointment.time == key) %}
-                                    <tr class="employee table-success">
+                                    <tr class="employee table-success" data-toggle="modal" data-target="#editAppointment{{appointment.time}}">
                                         <td class="bold text--green" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
-                                        <td rowspan="{{ appointment.duration }}" class="js-add-appointment text--green cell--centered"  data-time="{{ key }}" scope="row" data-toggle="modal" data-target="#addAppointment">Appointment for {{ appointment.name|e }}.</td>
+                                        <td rowspan="{{ appointment.duration }}" class="js-add-appointment text--green cell--centered"  data-time="{{ key }}" scope="row">Appointment for {{ appointment.name|e }}.</td>
                                     </tr>
                                     {% set appointmentSet = true %}
                                     {% set durationCounter = appointment.duration-1 %}
+
+
+
+                                    <div class="modal fade " id="editAppointment{{ appointment.time }}" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                            
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Edit an appointment</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <div class="modal-body">
+
+                                                <form action="{{ path('edit_appointment_action', {'id': appointment.id}) }}">
+
+                                                    <div class="form-group">
+                                                        <label for="name">Patient's full name</label>
+                                                        <input type="text" class="form-control" id="name" name="name" value="{{ appointment.name }}">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="duration">Duration</label>
+                                                        <input type="number" class="form-control" id="duration" name="duration" value="{{ appointment.duration }}">
+                                                    </div>
+
+                                                    <input type="number" name="time" style="display:none;" value="{{ appointment.time }}">
+
+                                                    <input type="text" name="date" style="display:none;" class="js-date-edit">
+
+                                                    <button type="submit" class="btn btn-primary float-right">Submit</button>
+
+                                                </form>
+
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                 {% endif %}
 
                                 
@@ -117,6 +159,7 @@
     $(document).ready(function(){
         if(getUrlParameter('date')){
             $("#js-schedule-date").val( getUrlParameter('date') );
+            $(".js-date-edit").val( getUrlParameter('date') );
         }
     });
 
