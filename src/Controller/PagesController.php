@@ -214,7 +214,82 @@ class PagesController extends AbstractController
         $entityManager->persist($newAppointment);
         $entityManager->flush();
 
-        return $this->redirectToRoute('schedule');
+        return $this->redirectToRoute('my_schedule');
+    }
+
+
+    public function edit_appointment_action(SessionInterface $session, $id){
+        if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
+        if( $session->get('user_permission', -1) == 1 ) return $this->redirectToRoute('schedule');
+        
+        $request = Request::createFromGlobals();
+        
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository(Appointment::class);
+        $toBeEdited = $repository->find($id);
+
+        if( !$toBeEdited ) return $this->redirectToRoute('my_schedule');
+
+        $user_id = $session->get('user_id');
+
+        $user = getUserById($user_id);
+
+        $date = $request->query->get('date');
+
+        $sameDayAppointments = $repository->findBy(
+            ['doctor' => $user_id],
+            ['date' => $date]
+        );
+
+        $s = $request->query->get('time');
+        $b = $s + $request->query->get('duration') - 1;
+
+        $conflict = 0;
+
+        if($b>23) $conflict = 2;
+
+        foreach($sameDayAppointments as $appointment){
+            if( $appointment->getId()==$id ) continue;
+
+            $ss = $appointment->getTime();
+            $bb = $ss + $appointment->getDuration() - 1;
+
+            if( $bb<$s || $ss>$b ){
+                } else {
+                    $conflict = 1;
+                }
+        }
+
+        if( $conflict==1 ) return $this->redirectToRoute('my_schedule', array('error' => 'time_reserved'));
+        if( $conflict==2 ) return $this->redirectToRoute('my_schedule', array('error' => 'past_midnight'));
+
+        $toBeEdited = new Employee();
+        $toBeEdited->setName( $request->query->get('name') );
+        $toBeEdited->setDoctor( $user_id );
+        $toBeEdited->setDate( $date );
+        $toBeEdited->setTime( $request->query->get('time') );
+        $toBeEdited->setDuration( $request->query->get('duration') );
+        
+        $entityManager->persist($toBeEdited);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('my_schedule');
+    }
+
+    public function delete_appointment_action(SessionInterface $session, $id){
+        if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
+        if( $session->get('user_permission', -1) == 1 ) return $this->redirectToRoute('schedule');
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository(Appointment::class);
+        $toBeDeleted = $repository->find($id);
+
+        if( !$toBeDeleted ) return $this->redirectToRoute('my_schedule');
+
+        $entityManager->remove($toBeDeleted);
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('my_schedule');
     }
 
 }
