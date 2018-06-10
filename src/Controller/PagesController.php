@@ -19,7 +19,17 @@ class PagesController extends AbstractController
         return $user;
     }
 
-    public function login(){
+    private function checkIfLoggedIn(SessionInterface $session, $needed){
+        if($needed){
+            if( $session->get('user_id', -1) == -1 ) return $this->redirectToRoute('/');
+        }else{    
+            if( $session->get('user_id', -1) != -1 ) return $this->redirectToRoute('schedule');
+        }
+    }
+
+    public function login(SessionInterface $session){
+        $this->checkIfLoggedIn($session, false);
+
         return $this->render('pages/login.html.twig', [
             'controller_name' => 'PagesController',
         ]);
@@ -44,17 +54,19 @@ class PagesController extends AbstractController
 
             if( $user->getPost() == "Admin" ){
                 $session->set('user_permission', 1);
-                return $this->redirectToRoute('employees');
             }else{
                 $session->set('user_permission', 0);
-                return $this->redirectToRoute('employees', array('tmp' => 'true'));
             }
+
+            return $this->redirectToRoute('schedule');
         } else {
             return $this->redirectToRoute('login', array('error' => 'wrong_username_or_password'));
         }
     }
 
-    public function employees(){
+    public function employees(SessionInterface $session){
+        $this->checkIfLoggedIn($session, true);
+
         return $this->render('pages/employees.html.twig', [
             'controller_name' => 'PagesController',
         ]);
