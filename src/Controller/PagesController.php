@@ -13,4 +13,9 @@ class PagesController extends AbstractController
             'controller_name' => 'PagesController',
         ]);
     }
+
+    public function cheese()
+    {
+        die('Cheese');
+    }
 }

@@ -1,25 +1,43 @@
-{# {% extends 'base.html.twig' %}
-
-{% block title %}Hello {{ controller_name }}!{% endblock %}
-
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'src/Controller/PagesController.php'|file_link(0) }}">src/Controller/PagesController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'templates/pages/index.html.twig'|file_link(0) }}">templates/pages/index.html.twig</a></code></li>
-    </ul>
-</div>
-{% endblock %} #}
-
 {% include 'header.html.twig' %}
 
+{% include 'navbars/navbar_admin.html.twig' %}
 
-Login page
+<div class="wrapper__main flex--centered tall">
+    <div class="login-box">
+        
+        <img id="js-login-box-logo" class="logo" src="{{ asset('img/tooth.svg') }}">
+
+        <form>
+
+            <div class="form-group">
+                <label for="login_username">Username</label>
+                <input type="text" class="form-control" id="login_username" aria-describedby="username" placeholder="Enter username">
+            </div>
+
+            <div class="form-group">
+                <label for="login_password">Password</label>
+                <input type="password" class="form-control" id="login_password" placeholder="Enter password">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Login</button>
+
+        </form>
+
+    </div>
+</div>
+
+<script>
+    $('#login_username').focusin(function(){
+        $('#js-login-box-logo').addClass('logo--scaled');
+    });
+    $('#login_username').focusout(function(){
+        $('#js-login-box-logo').removeClass('logo--scaled');
+    });
+
+    $('#login_password').focusin(function(){
+        $('#js-login-box-logo').addClass('logo--scaled');
+    });
+    $('#login_password').focusout(function(){
+        $('#js-login-box-logo').removeClass('logo--scaled');
+    });
+</script>
