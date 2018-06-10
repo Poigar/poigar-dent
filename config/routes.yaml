@@ -14,6 +14,12 @@ login_action:
     defaults:
         template: 'login.html.twig'
 
+logout_action:
+    path: logout
+    controller: App\Controller\PagesController::logout_action
+    defaults:
+        template: 'login.html.twig'
+
 employees:
     path: employees
     controller: App\Controller\PagesController::employees
