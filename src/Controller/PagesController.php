@@ -159,12 +159,24 @@ class PagesController extends AbstractController
         if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
         if( $session->get('user_permission', -1) == 1 ) return $this->redirectToRoute('schedule');
 
+        $request = Request::createFromGlobals();
         $user_id = $session->get('user_id');
+        $date = $request->query->get('date', date("Y-m-d"));
 
         $repository = $this->getDoctrine()->getRepository(Appointment::class);
-        $appointments = $repository->findBy(
+        $sameDoctorAppointments = $repository->findBy(
             ['doctor' => $user_id]
         );
+
+        $appointments = array();
+
+        foreach($sameDoctorAppointments as $appointment){
+            $d = getdate( strtotime($date) );
+            $d2 = getdate( ($appointment->getDate())->getTimestamp() );
+            if( $d["year"]==$d2["year"] && $d["mon"]==$d2["mon"] && $d["mday"]==$d2["mday"] ){
+                array_push( $appointments, $appointment );
+            }
+        }
 
         return $this->render('pages/my_schedule.html.twig', [
             'controller_name' => 'PagesController',
@@ -308,5 +320,15 @@ class PagesController extends AbstractController
         $entityManager->flush();
         
         return $this->redirectToRoute('my_schedule');
+    }
+
+    public function get_schedule_day(){
+        if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
+        if( $session->get('user_permission', -1) == 1 ) return $this->redirectToRoute('schedule');
+
+        $request = Request::createFromGlobals();
+        $date = $request->query->get('date');
+
+        return $this->redirectToRoute('my_schedule', array('date' => $date));
     }
 }
