@@ -154,4 +154,32 @@ class PagesController extends AbstractController
         ]);
     }
 
+    public function add_appointment_action(SessionInterface $session){
+        if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
+        if( $session->get('user_permission', -1) == 1 ) return $this->redirectToRoute('schedule');
+        
+        $user_id = $session->get('user_id');
+
+        $user = getUserById($user_id);
+
+        $date = $request->query->get('date');
+
+        $dow = date('w', $date);
+
+        $request = Request::createFromGlobals();
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $newAppointment = new Employee();
+        $newAppointment->setName( $request->query->get('name') );
+        $newAppointment->setDoctor( $user_id );
+        $newAppointment->setDate( $date );
+        $newAppointment->setTime( $request->query->get('time') );
+        $newAppointment->setDuration( $request->query->get('duration') );
+        
+        $entityManager->persist($newAppointment);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('schedule');
+    }
+
 }
