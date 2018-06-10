@@ -6,18 +6,12 @@
         <div class="card mb-5">
             <div class="card-body">
                 <table class="table table-striped table-bordered">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th width="10%" style="" scope="col">Time</th>
-                            <th width="90%" style="" scope="col">Appointment</th>
-                        </tr>
-                    </thead>
                     <tbody>
 
                         {% for key in range(0,23) %}
                             
                             <tr class="employee">
-                                <th scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</th>
+                                <td width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
                                 <td scope="row"> Random thing </td>
                             </tr>
                             
