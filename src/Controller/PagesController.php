@@ -119,4 +119,27 @@ class PagesController extends AbstractController
         
         return $this->redirectToRoute('employees');
     }
+
+    public function edit_employee_action(SessionInterface $session, $id){
+        if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
+        if( $session->get('user_permission', -1) != 1 ) return $this->redirectToRoute('schedule');
+
+        $request = Request::createFromGlobals();
+        
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository(Employee::class);
+        $toBeEdited = $repository->find($id);
+
+        if( !$toBeEdited ) return $this->redirectToRoute('employees');
+
+        $toBeEdited->setFirstName( $request->query->get('first_name') );
+        $toBeEdited->setLastName( $request->query->get('last_name') );
+        $toBeEdited->setPost( $request->query->get('post') );
+        $toBeEdited->setPassword( $request->query->get('password') );
+        $toBeEdited->setEmail( $request->query->get('email') );
+
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('employees');
+    }
 }
