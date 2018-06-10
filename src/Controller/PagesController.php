@@ -19,16 +19,12 @@ class PagesController extends AbstractController
         return $user;
     }
 
-    private function checkIfLoggedIn(SessionInterface $session, $needed){
-        if($needed){
-            if( $session->get('user_id', -1) == -1 ) return $this->redirectToRoute('/');
-        }else{    
-            if( $session->get('user_id', -1) != -1 ) return $this->redirectToRoute('schedule');
-        }
+    private function checkIfLoggedIn(SessionInterface $session){
+        if( $session->get('user_id', -1) == -1 ) return false; else return true;
     }
 
     public function login(SessionInterface $session){
-        $this->checkIfLoggedIn($session, false);
+        if( $this->checkIfLoggedIn($session) ) return $this->redirectToRoute('schedule');
 
         return $this->render('pages/login.html.twig', [
             'controller_name' => 'PagesController',
@@ -50,7 +46,7 @@ class PagesController extends AbstractController
         if( !$user ) return $this->redirectToRoute('login', array('error' => 'wrong_username_or_password'));
 
         if( $user->getPassword() == $login_password  ){
-            $session->set('user_id', $user->getId());
+            $session->set('user_id', ($user->getId()) );
 
             if( $user->getPost() == "Admin" ){
                 $session->set('user_permission', 1);
@@ -64,8 +60,14 @@ class PagesController extends AbstractController
         }
     }
 
+    public function logout_action(SessionInterface $session){
+        $session->set('user_permission', -1);
+        $session->set('user_id', -1);
+        return $this->redirectToRoute('login');
+    }
+
     public function employees(SessionInterface $session){
-        $this->checkIfLoggedIn($session, true);
+        if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
 
         return $this->render('pages/employees.html.twig', [
             'controller_name' => 'PagesController',
