@@ -3,12 +3,18 @@
 
 <div class="wrapper__main margin__under-navbar">
     <div class="container">
+
         <div class="card mb-5">
             <div class="card-body">
-                <button type="button" class="btn btn-primary float-right mb-4" data-toggle="modal" data-target="#addEmployee"><i class="fa fa-user"></i> Add a new employee</button>
-                <table class="table table-borderless">
-                    <thead class="thead-dark">
-                        <tr>
+                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addEmployee"><i class="fa fa-user"></i> Add a new employee</button>
+            </div>
+        </div>
+
+        <div class="card mb-5">
+            <div class="card-body">
+                <table class="table table-bordered table-hover rmb">
+                    <thead>
+                        <tr class="table-light">
                             <th style="border-top-left-radius:5px;border-bottom-left-radius:5px;" scope="col">ID</th>
                             <th scope="col">First name</th>
                             <th scope="col">Last name</th>
@@ -29,6 +35,7 @@
                                 <td>{{ user.post|e }}</td>
 
                                 {% set user_id = user.id %}
+                                {% set pattern = user.schedulePattern %}
 
                                 <td class="text-right">
                                     <a data-toggle="modal" data-target="#editSchedulePattern{{ user_id }}" href="#" class="employee__action"><i class="fa fa-calendar"></i></a>
@@ -58,7 +65,7 @@
                                     </div>
 
                                     <div class="modal-body">
-                                        <div class="pattern__wrapper">
+                                        <div id="pattern_{{ user_id }}" class="pattern__wrapper">
                                             <div class="legends">
                                                 <span>00:00</span>
                                                 <span>01:00</span>
@@ -311,10 +318,11 @@
 
 
                                         </div>
+                                        <script>load_pattern({{ user_id }}, {{ pattern }});</script>
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary float-left" data-dismiss="modal">Submit</button>
+                                        <button onclick="save_pattern({{ user_id }})" type="button" class="btn btn-primary float-left" data-dismiss="modal">Submit</button>
                                     </div>
                                     </div>
                                 </div>
@@ -470,10 +478,6 @@
             e.preventDefault();
         }
     });
-
-
-
-
 
 
     $('.hour').click(function(){

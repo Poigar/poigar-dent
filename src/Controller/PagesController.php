@@ -12,8 +12,15 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Entity\Employee;
 use App\Entity\Appointment;
 
+
+
+
 class PagesController extends AbstractController
 {
+
+
+
+
     private function getUserById($id){
         $repository = $this->getDoctrine()->getRepository(Employee::class);
         $user = $repository->find($id);
@@ -23,6 +30,10 @@ class PagesController extends AbstractController
     private function checkIfLoggedIn(SessionInterface $session){
         if( $session->get('user_id', -1) == -1 ) return false; else return true;
     }
+
+
+
+
 
     public function login(SessionInterface $session){
         if( $this->checkIfLoggedIn($session) ) return $this->redirectToRoute('schedule');
@@ -66,6 +77,10 @@ class PagesController extends AbstractController
         $session->set('user_id', -1);
         return $this->redirectToRoute('login');
     }
+
+
+
+
 
     public function employees(SessionInterface $session){
         if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
@@ -143,6 +158,29 @@ class PagesController extends AbstractController
         return $this->redirectToRoute('employees');
     }
 
+    public function edit_employee_pattern_action(SessionInterface $session, $id){
+        if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
+        if( $session->get('user_permission', -1) != 1 ) return $this->redirectToRoute('schedule');
+
+        $request = Request::createFromGlobals();
+        
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository(Employee::class);
+        $toBeEdited = $repository->find($id);
+
+        if( !$toBeEdited ) return $this->redirectToRoute('employees');
+
+        $toBeEdited->setSchedulePattern( $request->query->get('pattern') );
+
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('employees');
+    }
+
+
+
+    
+
     public function schedule(SessionInterface $session){
         if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
 
@@ -183,6 +221,18 @@ class PagesController extends AbstractController
             'appointments' => $appointments,
         ]);
     }
+
+    public function get_schedule_day(SessionInterface $session){
+        if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
+        if( $session->get('user_permission', -1) == 1 ) return $this->redirectToRoute('schedule');
+
+        $request = Request::createFromGlobals();
+        $date = $request->query->get('date');
+
+        return $this->redirectToRoute('my_schedule', array('date' => $date));
+    }
+
+
 
     public function add_appointment_action(SessionInterface $session){
         if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
@@ -251,7 +301,6 @@ class PagesController extends AbstractController
 
         return $this->redirectToRoute('my_schedule', array('date' => $date));
     }
-
 
     public function edit_appointment_action(SessionInterface $session, $id){
         if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
@@ -340,13 +389,5 @@ class PagesController extends AbstractController
         return $this->redirectToRoute('my_schedule');
     }
 
-    public function get_schedule_day(SessionInterface $session){
-        if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
-        if( $session->get('user_permission', -1) == 1 ) return $this->redirectToRoute('schedule');
 
-        $request = Request::createFromGlobals();
-        $date = $request->query->get('date');
-
-        return $this->redirectToRoute('my_schedule', array('date' => $date));
-    }
 }

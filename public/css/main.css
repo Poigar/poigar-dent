@@ -39,6 +39,9 @@
 body {
   background-color: #e6e6e6; }
 
+* {
+  outline: none; }
+
 .login-box {
   min-width: 25%;
   position: relative; }

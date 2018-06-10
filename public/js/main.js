@@ -12,3 +12,26 @@ function getUrlParameter(sParam) {
         }
     }
 };
+
+function load_pattern(user_id, pattern){
+
+    for(var i=0; i<pattern.length; i++){
+        console.log(i);
+    }
+}
+
+
+function save_pattern(user_id){
+    var pattern_wrapper = document.getElementById('pattern_'+user_id);
+
+    var hours = pattern_wrapper.getElementsByClassName('hour');
+    
+    var pattern = "";
+
+    for(var i=0; i<hours.length; i++){
+        if($(hours[i]).hasClass('hour--active')) pattern = pattern+"1";
+        else pattern = pattern +"0";
+    }
+
+    window.location = "edit_employee_pattern_action/"+user_id+"?pattern="+pattern;
+}
