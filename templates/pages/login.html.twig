@@ -7,6 +7,10 @@
 
         <form action="{{ path('login_action') }}">
 
+            <div id="login__error" class="alert alert-danger text-center" role="alert" style="display: none;">
+                <span class="login__error">Wrong username or password!</span>
+            </div>
+
             <div class="form-group">
                 <label for="login_username">Username</label>
                 <input type="text" class="form-control" name="login_username" id="login_username" aria-describedby="username" placeholder="Enter email">
@@ -17,7 +21,7 @@
                 <input type="password" class="form-control" name="login_password" id="login_password" placeholder="Enter password">
             </div>
 
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button id="js-login-submit" type="submit" class="btn btn-primary">Login</button>
 
         </form>
 
@@ -40,8 +44,11 @@
     });
 
     if(getUrlParameter('error')){
-    alert(getUrlParameter('error'));
-
+        if(getUrlParameter('error') == 'wrong_username_or_password'){
+            $('#login_username').addClass('is-invalid');    
+            $('#login__error').css("display","block");
+            $('#login_password').addClass('is-invalid');
+        }
     }else{
 
     }

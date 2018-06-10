@@ -154,6 +154,18 @@ class PagesController extends AbstractController
         ]);
     }
 
+    public function my_schedule(SessionInterface $session){
+        if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
+
+        $repository = $this->getDoctrine()->getRepository(Employee::class);
+        $users = $repository->findAll();
+
+        return $this->render('pages/schedule.html.twig', [
+            'controller_name' => 'PagesController',
+            'users' => $users,
+        ]);
+    }
+
     public function add_appointment_action(SessionInterface $session){
         if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
         if( $session->get('user_permission', -1) == 1 ) return $this->redirectToRoute('schedule');

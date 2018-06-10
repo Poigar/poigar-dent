@@ -49,3 +49,9 @@ schedule:
     controller: App\Controller\PagesController::schedule
     defaults:
         template: 'schedule.html.twig'
+
+my_schedule:
+    path: my_schedule
+    controller: App\Controller\PagesController::my_schedule
+    defaults:
+        template: 'my_schedule.html.twig'

@@ -10,12 +10,18 @@
     <ul class="navbar-nav ml-auto">
 
       <li class="nav-item">
-        <a class="nav-link" href="{{ path('schedule') }}"><i class="fa fa-sign-out"></i> Schedule</a>
+        <a class="nav-link" href="{{ path('schedule') }}"><i class="fa fa-calendar"></i> Schedule</a>
       </li>
+
+      {% if(app.session.get('user_permission')==0) %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('my_schedule') }}"><i class="fa fa-user"></i> My schedule</a>
+        </li>
+      {% endif %}
 
       {% if(app.session.get('user_permission')==1) %}
         <li class="nav-item">
-          <a class="nav-link" href="{{ path('employees') }}"><i class="fa fa-user"></i> Employees</a>
+          <a class="nav-link" href="{{ path('employees') }}"><i class="fa fa-users"></i> Employees</a>
         </li>
       {% endif %}
 
