@@ -68,6 +68,7 @@ class PagesController extends AbstractController
 
     public function employees(SessionInterface $session){
         if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
+        if( $session->get('user_permission', -1) != 1 ) return $this->redirectToRoute('schedule');
 
         $repository = $this->getDoctrine()->getRepository(Employee::class);
 
@@ -81,6 +82,7 @@ class PagesController extends AbstractController
 
     public function add_employee_action(SessionInterface $session){
         if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
+        if( $session->get('user_permission', -1) != 1 ) return $this->redirectToRoute('schedule');
         
         $request = Request::createFromGlobals();
         $entityManager = $this->getDoctrine()->getManager();
@@ -99,6 +101,22 @@ class PagesController extends AbstractController
         $entityManager->persist($newUser);
         $entityManager->flush();
 
+        return $this->redirectToRoute('employees');
+    }
+
+    public function delete_employee_action(SessionInterface $session, $id){
+        if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
+        if( $session->get('user_permission', -1) != 1 ) return $this->redirectToRoute('schedule');
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository(Employee::class);
+        $toBeDeleted = $repository->find($id);
+
+        if( !$toBeDeleted ) return $this->redirectToRoute('employees');
+
+        $entityManager->remove($toBeDeleted);
+        $entityManager->flush();
+        
         return $this->redirectToRoute('employees');
     }
 }
