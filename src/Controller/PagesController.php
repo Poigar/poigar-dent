@@ -69,6 +69,10 @@ class PagesController extends AbstractController
     public function employees(SessionInterface $session){
         if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
 
+        $repository = $this->getDoctrine()->getRepository(Employee::class);
+
+        $users = $repository->findAll();
+
         return $this->render('pages/employees.html.twig', [
             'controller_name' => 'PagesController',
         ]);
