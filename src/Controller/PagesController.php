@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class PagesController extends AbstractController
 {
@@ -14,8 +15,10 @@ class PagesController extends AbstractController
         ]);
     }
 
-    public function cheese()
+    public function employees()
     {
-        die('Cheese');
+        return $this->render('pages/employees.html.twig', [
+            'controller_name' => 'PagesController',
+        ]);
     }
 }

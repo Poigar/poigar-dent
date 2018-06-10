@@ -7,3 +7,9 @@ login:
     controller: App\Controller\PagesController::login
     defaults:
         template: 'login.html.twig'
+
+employees:
+    path: employees
+    controller: App\Controller\PagesController::employees
+    defaults:
+        template: 'employees.html.twig'
