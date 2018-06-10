@@ -160,7 +160,7 @@ class PagesController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(Employee::class);
         $users = $repository->findAll();
 
-        return $this->render('pages/schedule.html.twig', [
+        return $this->render('pages/my_schedule.html.twig', [
             'controller_name' => 'PagesController',
             'users' => $users,
         ]);
