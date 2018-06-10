@@ -32,10 +32,15 @@
 
                                 <td class="text-right">
                                     <a data-toggle="modal" data-target="#editSchedulePattern{{ user_id }}" href="#" class="employee__action"><i class="fa fa-calendar"></i></a>
-                                    <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
+                                    <a data-toggle="modal" data-target="#editEmployee{{ user_id }}" href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
                                     <a id="js-delete-user" href="{{ path('delete_employee_action', {'id': user_id}) }}" class="employee__action action__red"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
+
+
+
+
+
 
                             <div class="modal fade " id="editSchedulePattern{{ user_id }}" tabindex="-1" role="dialog" aria-hidden="true">
                                 <div class="modal-dialog modal-lg2 modal-dialog-centered" role="document">
@@ -181,15 +186,15 @@
                                                 <span>Thu.</span>
 
                                                 <div class="day__hours">
-                                                    <div class="hour hour--active"><span class="legend"></span></div>
                                                     <div class="hour"><span class="legend"></span></div>
                                                     <div class="hour"><span class="legend"></span></div>
                                                     <div class="hour"><span class="legend"></span></div>
                                                     <div class="hour"><span class="legend"></span></div>
                                                     <div class="hour"><span class="legend"></span></div>
                                                     <div class="hour"><span class="legend"></span></div>
-                                                    <div class="hour hour--active"><span class="legend"></span></div>
-                                                    <div class="hour hour--active"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
                                                     <div class="hour"><span class="legend"></span></div>
                                                     <div class="hour"><span class="legend"></span></div>
                                                     <div class="hour"><span class="legend"></span></div>
@@ -309,12 +314,80 @@
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary float-left" data-dismiss="modal">Save</button>
+                                        <button type="button" class="btn btn-primary float-left" data-dismiss="modal">Submit</button>
                                     </div>
                                     </div>
                                 </div>
                             </div>
 
+
+
+                            <div class="modal fade " id="editEmployee{{ user_id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                    
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Edit an employee</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+
+                                        <form action="{{ path('edit_employee_action', {'id': user_id}) }}">
+
+                                            <div class="form-group">
+                                                <label for="first_name">First name</label>
+                                                <input value="{{ user.firstName }}" type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter first name">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="last_name">Last name</label>
+                                                <input value="{{ user.lastName }}"type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter last name">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input value="{{ user.email }}"type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="password">Password</label>
+                                                <input value="{{ user.password }}"type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="post">Post</label>
+                                                <select class="form-control" id="post" name="post">
+                                                    {% if(user.post == "Admin") %}
+                                                        <option selected>Admin</option>
+                                                        <option>Dentist</option>
+                                                        <option>Hygienist</option>
+                                                    {% endif %}
+
+                                                    {% if(user.post == "Dentist") %}
+                                                        <option selected>Dentist</option>
+                                                        <option>Admin</option>
+                                                        <option>Hygienist</option>
+                                                    {% endif %}
+
+                                                    {% if(user.post == "Hygienist") %}
+                                                        <option selected>Hygienist</option>
+                                                        <option>Admin</option>
+                                                        <option>Dentist</option>
+                                                    {% endif %}
+                                                </select>
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary float-right">Submit</button>
+
+                                        </form>
+
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
 
                         {% endfor %}
 
