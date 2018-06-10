@@ -6,10 +6,30 @@
 
         <div class="card mb-2">
             <div class="card-body">
-                <div class="form-group">
-                    <label for="name">Select date</label>
-                    <input type="date" class="form-control" id="name" name="name">
+            <form action="{{ path('get_schedule_day') }}" class="rmb">
+                <div class="row">
+                    <div class="col-10">
+                        <input type="date" class="form-control mr-sm-2" id="inlineFormInputName2" placeholder="Jane Doe">
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-search"></i></button>
+                    </div>
                 </div>
+            </form>
+                {# <form class="form-inline rmb">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <label class="sr-only" for="inlineFormInputName2">Name</label>
+                        <input type="date" class="form-control mr-sm-2" id="inlineFormInputName2" placeholder="Jane Doe">
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+                    
+                    {# <input type="date" class="form-control mr-sm-2" id="inlineFormInputName2" placeholder="Jane Doe"> 
+                    
+                </form> #}
             </div>
         </div>
 
@@ -64,6 +84,8 @@
             </div>
 
             <input type="number" name="time" id="js-time" style="display:none;">
+
+            <input type="text" name="date" id="js-date" style="display:none;">
 
             <button type="submit" class="btn btn-primary float-right">Submit</button>
 
