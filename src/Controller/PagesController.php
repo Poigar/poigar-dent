@@ -186,10 +186,19 @@ class PagesController extends AbstractController
 
         $date = $request->query->get('date', date("Y-m-d"));
 
-        $sameDayAppointments = $repository->findBy(
-            ['doctor' => $user_id],
-            ['date' => $date]
+        $sameDoctorAppointments = $repository->findBy(
+            ['doctor' => $user_id]
         );
+
+        $sameDayAppointments = array();
+
+        foreach($sameDoctorAppointments as $appointment){
+            $d = getdate( strtotime($date) );
+            $d2 = getdate( ($appointment->getDate())->getTimestamp() );
+            if( $d["year"]==$d2["year"] && $d["mon"]==$d2["mon"] && $d["mday"]==$d2["mday"] ){
+                array_push( $sameDayAppointments, $appointment );
+            }
+        }
 
         $s = $request->query->get('time');
         $b = $s + $request->query->get('duration') - 1;
@@ -213,10 +222,10 @@ class PagesController extends AbstractController
 
         
 
-        $newAppointment = new Employee();
+        $newAppointment = new Appointment();
         $newAppointment->setName( $request->query->get('name') );
         $newAppointment->setDoctor( $user_id );
-        $newAppointment->setDate( $date );
+        $newAppointment->setDate( \DateTime::createFromFormat('Y-m-d', $date) );
         $newAppointment->setTime( $request->query->get('time') );
         $newAppointment->setDuration( $request->query->get('duration') );
         
