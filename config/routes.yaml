@@ -26,3 +26,14 @@ employees:
     defaults:
         template: 'employees.html.twig'
 
+add_employee_action:
+    path: add_employee_action
+    controller: App\Controller\PagesController::add_employee_action
+    defaults:
+        template: 'employees.html.twig'
+
+delete_employee_action:
+    path: delete_employee_action/{id}
+    controller: App\Controller\PagesController::delete_employee_action
+    defaults:
+        template: 'employees.html.twig'

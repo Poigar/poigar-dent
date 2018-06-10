@@ -75,6 +75,7 @@ class PagesController extends AbstractController
 
         return $this->render('pages/employees.html.twig', [
             'controller_name' => 'PagesController',
+            'users' => $users,
         ]);
     }
 }

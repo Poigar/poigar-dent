@@ -19,18 +19,25 @@
                     </thead>
                     <tbody>
 
-                        <tr class="employee">
-                            <th scope="row">1</th>
-                            <td>Didzis</td>
-                            <td>Lielais</td>
-                            <td>test@gmail.com</td>
-                            <td>Admin</td>
-                            <td class="text-right">
-                                {# <a data-toggle="modal" data-target="#userCallender" href="#" class="employee__action"><i class="fa fa-calendar"></i></a> #}
-                                <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
-                                <a id="js-delete-user" href="http://google.com" class="employee__action action__red"><i class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
+                        {% for user in users %}
+                            
+                            <tr class="employee">
+                                <th scope="row">{{ user.id|e }}</th>
+                                <td>{{ user.firstName }}</td>
+                                <td>{{ user.lastName }}</td>
+                                <td>{{ user.email|e }}</td>
+                                <td>{{ user.post|e }}</td>
+
+                                {% set user_id = user.id %}
+
+                                <td class="text-right">
+                                    {# <a data-toggle="modal" data-target="#userCallender" href="#" class="employee__action"><i class="fa fa-calendar"></i></a> #}
+                                    <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
+                                    <a id="js-delete-user" href="{{ path('delete_employee_action', {'id': user_id}) }}" class="employee__action action__red"><i class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>
+
+                        {% endfor %}
 
                     </tbody>
                 </table>
@@ -59,31 +66,31 @@
 
       <div class="modal-body">
 
-        <form>
+        <form action="{{ path('add_employee_action') }}">
 
             <div class="form-group">
                 <label for="first_name">First name</label>
-                <input type="text" class="form-control" id="first_name" placeholder="Enter first name">
+                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter first name">
             </div>
 
             <div class="form-group">
                 <label for="last_name">Last name</label>
-                <input type="text" class="form-control" id="last_name" placeholder="Enter last name">
+                <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter last name">
             </div>
 
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter password">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
             </div>
 
             <div class="form-group">
                 <label for="post">Post</label>
-                <select class="form-control" id="exampleFormControlSelect1">
+                <select class="form-control" id="post" name="post">
                     <option>Admin</option>
                     <option>Dentist</option>
                     <option>Hygienist</option>
