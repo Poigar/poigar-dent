@@ -9,7 +9,7 @@
             <form action="{{ path('get_schedule_day') }}" class="rmb">
                 <div class="row">
                     <div class="col-10">
-                        <input type="date" class="form-control mr-sm-2" id="inlineFormInputName2" placeholder="Jane Doe">
+                        <input type="date" class="form-control mr-sm-2" name="date" id="inlineFormInputName2" placeholder="Jane Doe">
                     </div>
                     <div class="col">
                         <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-search"></i></button>
@@ -102,6 +102,10 @@
     $('.js-add-appointment').click(function(){
         var tmp_time = $(this).data("time");
         $("#js-time").val(tmp_time);
+
+        if(getUrlParameter('date')){
+            $("#js-date").val( getUrlParameter('date') );
+        }
     });
 
 </script>

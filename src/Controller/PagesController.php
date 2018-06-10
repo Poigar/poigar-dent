@@ -196,7 +196,10 @@ class PagesController extends AbstractController
 
         $user = $this->getUserById($user_id);
 
-        $date = $request->query->get('date', date("Y-m-d"));
+        $date = $request->query->get('date',date("Y-m-d"));
+        /*if( !$date || $date="" || $date===NULL ){
+            $date = date("Y-m-d");
+        }*/
 
         $sameDoctorAppointments = $repository->findBy(
             ['doctor' => $user_id]
@@ -243,6 +246,8 @@ class PagesController extends AbstractController
         
         $entityManager->persist($newAppointment);
         $entityManager->flush();
+
+        //die(":: ".$date);
 
         return $this->redirectToRoute('my_schedule');
     }
@@ -322,7 +327,7 @@ class PagesController extends AbstractController
         return $this->redirectToRoute('my_schedule');
     }
 
-    public function get_schedule_day(){
+    public function get_schedule_day(SessionInterface $session){
         if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
         if( $session->get('user_permission', -1) == 1 ) return $this->redirectToRoute('schedule');
 
