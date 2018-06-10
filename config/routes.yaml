@@ -8,8 +8,15 @@ login:
     defaults:
         template: 'login.html.twig'
 
+login_action:
+    path: login_action
+    controller: App\Controller\PagesController::login_action
+    defaults:
+        template: 'login.html.twig'
+
 employees:
     path: employees
     controller: App\Controller\PagesController::employees
     defaults:
         template: 'employees.html.twig'
+
