@@ -6,8 +6,14 @@
 .tall {
   min-height: 100vh; }
 
+.margin__under-navbar {
+  margin-top: 100px; }
+
+.border__3 {
+  border-radius: 3px !important; }
+
 body {
-  background-color: whitesmoke; }
+  background-color: #e6e6e6; }
 
 .login-box {
   min-width: 25%;
@@ -26,5 +32,13 @@ body {
     transition-duration: 0.25s; }
   .login-box .logo--scaled {
     transform: scale(1.1); }
+
+.employee .employee__action {
+  font-size: 1.2em;
+  padding-right: 10px; }
+  .employee .employee__action i {
+    color: #3a3a3a; }
+.employee .action__red i {
+  color: #ad4444; }
 
 /*# sourceMappingURL=main.css.map */

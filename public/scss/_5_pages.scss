@@ -22,3 +22,18 @@
         transform: scale(1.1);
     }
 }
+
+.employee{
+    .employee__action{
+        font-size: 1.2em;
+        padding-right: 10px;
+        i{
+            color: $color__gray;
+        }
+    }
+    .action__red{
+        i{
+            color: $color__red;
+        }
+    }
+}

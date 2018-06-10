@@ -1,2 +1,282 @@
 {% include 'header.html.twig' %}
 {% include 'navbars/navbar_admin.html.twig' %}
+
+<div class="wrapper__main margin__under-navbar">
+    <div class="container">
+        <div class="card mb-5">
+            <div class="card-body">
+                <button type="button" class="btn btn-primary float-right mb-4" data-toggle="modal" data-target="#addUser"><i class="fa fa-user"></i> Add a new employee</button>
+                <table class="table table-borderless">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="border-top-left-radius:5px;border-bottom-left-radius:5px;" scope="col">ID</th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Post</th>
+                            <th style="border-top-right-radius:5px;border-bottom-right-radius:5px;" scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="employee">
+                            <th scope="row">1</th>
+                            <td>Didzis</td>
+                            <td>Lielais</td>
+                            <td>test@gmail.com</td>
+                            <td>Admin</td>
+                            <td class="text-right">
+                                <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
+                                <a id="js-delete-user" href="http://google.com" class="employee__action action__red"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr class="employee">
+                            <th scope="row">1</th>
+                            <td>Didzis</td>
+                            <td>Lielais</td>
+                            <td>test@gmail.com</td>
+                            <td>Admin</td>
+                            <td class="text-right">
+                                <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
+                                <a href="#" class="employee__action action__red"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr class="employee">
+                            <th scope="row">1</th>
+                            <td>Didzis</td>
+                            <td>Lielais</td>
+                            <td>test@gmail.com</td>
+                            <td>Admin</td>
+                            <td class="text-right">
+                                <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
+                                <a href="#" class="employee__action action__red"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr class="employee">
+                            <th scope="row">1</th>
+                            <td>Didzis</td>
+                            <td>Lielais</td>
+                            <td>test@gmail.com</td>
+                            <td>Admin</td>
+                            <td class="text-right">
+                                <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
+                                <a href="#" class="employee__action action__red"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr class="employee">
+                            <th scope="row">1</th>
+                            <td>Didzis</td>
+                            <td>Lielais</td>
+                            <td>test@gmail.com</td>
+                            <td>Admin</td>
+                            <td class="text-right">
+                                <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
+                                <a href="#" class="employee__action action__red"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr class="employee">
+                            <th scope="row">1</th>
+                            <td>Didzis</td>
+                            <td>Lielais</td>
+                            <td>test@gmail.com</td>
+                            <td>Admin</td>
+                            <td class="text-right">
+                                <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
+                                <a href="#" class="employee__action action__red"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr class="employee">
+                            <th scope="row">1</th>
+                            <td>Didzis</td>
+                            <td>Lielais</td>
+                            <td>test@gmail.com</td>
+                            <td>Admin</td>
+                            <td class="text-right">
+                                <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
+                                <a href="#" class="employee__action action__red"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr class="employee">
+                            <th scope="row">1</th>
+                            <td>Didzis</td>
+                            <td>Lielais</td>
+                            <td>test@gmail.com</td>
+                            <td>Admin</td>
+                            <td class="text-right">
+                                <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
+                                <a href="#" class="employee__action action__red"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr class="employee">
+                            <th scope="row">1</th>
+                            <td>Didzis</td>
+                            <td>Lielais</td>
+                            <td>test@gmail.com</td>
+                            <td>Admin</td>
+                            <td class="text-right">
+                                <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
+                                <a href="#" class="employee__action action__red"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr class="employee">
+                            <th scope="row">1</th>
+                            <td>Didzis</td>
+                            <td>Lielais</td>
+                            <td>test@gmail.com</td>
+                            <td>Admin</td>
+                            <td class="text-right">
+                                <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
+                                <a href="#" class="employee__action action__red"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr class="employee">
+                            <th scope="row">1</th>
+                            <td>Didzis</td>
+                            <td>Lielais</td>
+                            <td>test@gmail.com</td>
+                            <td>Admin</td>
+                            <td class="text-right">
+                                <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
+                                <a href="#" class="employee__action action__red"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr class="employee">
+                            <th scope="row">1</th>
+                            <td>Didzis</td>
+                            <td>Lielais</td>
+                            <td>test@gmail.com</td>
+                            <td>Admin</td>
+                            <td class="text-right">
+                                <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
+                                <a href="#" class="employee__action action__red"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr class="employee">
+                            <th scope="row">1</th>
+                            <td>Didzis</td>
+                            <td>Lielais</td>
+                            <td>test@gmail.com</td>
+                            <td>Admin</td>
+                            <td class="text-right">
+                                <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
+                                <a href="#" class="employee__action action__red"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr class="employee">
+                            <th scope="row">1</th>
+                            <td>Didzis</td>
+                            <td>Lielais</td>
+                            <td>test@gmail.com</td>
+                            <td>Admin</td>
+                            <td class="text-right">
+                                <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
+                                <a href="#" class="employee__action action__red"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr class="employee">
+                            <th scope="row">1</th>
+                            <td>Didzis</td>
+                            <td>Lielais</td>
+                            <td>test@gmail.com</td>
+                            <td>Admin</td>
+                            <td class="text-right">
+                                <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
+                                <a href="#" class="employee__action action__red"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr class="employee">
+                            <th scope="row">1</th>
+                            <td>Didzis</td>
+                            <td>Lielais</td>
+                            <td>test@gmail.com</td>
+                            <td>Admin</td>
+                            <td class="text-right">
+                                <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
+                                <a href="#" class="employee__action action__red"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        <tr class="employee">
+                            <th scope="row">1</th>
+                            <td>Didzis</td>
+                            <td>Lielais</td>
+                            <td>test@gmail.com</td>
+                            <td>Admin</td>
+                            <td class="text-right">
+                                <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
+                                <a href="#" class="employee__action action__red"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="modal fade " id="addUser" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add a new employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <form>
+
+            <div class="form-group">
+                <label for="first_name">First name</label>
+                <input type="text" class="form-control" id="first_name" placeholder="Enter first name">
+            </div>
+
+            <div class="form-group">
+                <label for="last_name">Last name</label>
+                <input type="text" class="form-control" id="last_name" placeholder="Enter last name">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter password">
+            </div>
+
+            <div class="form-group">
+                <label for="post">Post</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>Admin</option>
+                    <option>Dentist</option>
+                    <option>Hygienist</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary float-right">Submit</button>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    $('#js-delete-user').click(function(e){
+        if(!confirm('You are about to delete a user, continue?')){
+            e.preventDefault();
+        }
+    });
+
+</script>
