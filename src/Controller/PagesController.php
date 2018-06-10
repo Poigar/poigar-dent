@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 use App\Entity\Employee;
+use App\Entity\Appointment;
 
 class PagesController extends AbstractController
 {
