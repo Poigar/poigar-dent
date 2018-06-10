@@ -79,13 +79,13 @@ class PagesController extends AbstractController
         ]);
     }
 
-    public function add_employee_action(){
+    public function add_employee_action(SessionInterface $session){
         if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
         
         $request = Request::createFromGlobals();
         $entityManager = $this->getDoctrine()->getManager();
 
-        $newUser = new Entity();
+        $newUser = new Employee();
         $newUser->setFirstName( $request->query->get('first_name') );
         $newUser->setLastName( $request->query->get('last_name') );
         $newUser->setPost( $request->query->get('post') );
