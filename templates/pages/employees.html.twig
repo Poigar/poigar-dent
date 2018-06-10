@@ -5,7 +5,7 @@
     <div class="container">
         <div class="card mb-5">
             <div class="card-body">
-                <button type="button" class="btn btn-primary float-right mb-4" data-toggle="modal" data-target="#addUser"><i class="fa fa-user"></i> Add a new employee</button>
+                <button type="button" class="btn btn-primary float-right mb-4" data-toggle="modal" data-target="#addEmployee"><i class="fa fa-user"></i> Add a new employee</button>
                 <table class="table table-borderless">
                     <thead class="thead-dark">
                         <tr>
@@ -31,11 +31,290 @@
                                 {% set user_id = user.id %}
 
                                 <td class="text-right">
-                                    {# <a data-toggle="modal" data-target="#userCallender" href="#" class="employee__action"><i class="fa fa-calendar"></i></a> #}
+                                    <a data-toggle="modal" data-target="#editSchedulePattern{{ user_id }}" href="#" class="employee__action"><i class="fa fa-calendar"></i></a>
                                     <a href="#" class="employee__action"><i class="fa fa-pencil"></i></a>
                                     <a id="js-delete-user" href="{{ path('delete_employee_action', {'id': user_id}) }}" class="employee__action action__red"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
+
+                            <div class="modal fade " id="editSchedulePattern{{ user_id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-lg2 modal-dialog-centered" role="document">
+                                    
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Edit the schedule pattern</h5>
+                                        <div class="legends__meanings">
+                                            <div class="legends__meanings__item">Working</div>
+                                            <div class="legends__meanings__item gray">Not available</div>
+                                        </div>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <div class="pattern__wrapper">
+                                            <div class="legends">
+                                                <span>00:00</span>
+                                                <span>01:00</span>
+                                                <span>02:00</span>
+                                                <span>03:00</span>
+                                                <span>04:00</span>
+                                                <span>05:00</span>
+                                                <span>06:00</span>
+                                                <span>07:00</span>
+                                                <span>08:00</span>
+                                                <span>09:00</span>
+                                                <span>10:00</span>
+                                                <span>11:00</span>
+                                                <span>12:00</span>
+                                                <span>13:00</span>
+                                                <span>14:00</span>
+                                                <span>15:00</span>
+                                                <span>16:00</span>
+                                                <span>17:00</span>
+                                                <span>18:00</span>
+                                                <span>19:00</span>
+                                                <span>20:00</span>
+                                                <span>21:00</span>
+                                                <span>22:00</span>
+                                                <span>23:00</span>
+                                            </div>
+
+
+                                            <div class="day">
+                                                <span>Mon.</span>
+
+                                                <div class="day__hours">
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="day">
+                                                <span>Tue.</span>
+
+                                                <div class="day__hours">
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="day">
+                                                <span>Wed.</span>
+
+                                                <div class="day__hours">
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="day">
+                                                <span>Thu.</span>
+
+                                                <div class="day__hours">
+                                                    <div class="hour hour--active"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour hour--active"><span class="legend"></span></div>
+                                                    <div class="hour hour--active"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="day">
+                                                <span>Fri.</span>
+
+                                                <div class="day__hours">
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="day">
+                                                <span>Sat.</span>
+
+                                                <div class="day__hours">
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="day">
+                                                <span>Sun.</span>
+
+                                                <div class="day__hours">
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                    <div class="hour"><span class="legend"></span></div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary float-left" data-dismiss="modal">Save</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+
 
                         {% endfor %}
 
@@ -53,7 +332,7 @@
 
 
 
-<div class="modal fade " id="addUser" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade " id="addEmployee" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     
     <div class="modal-content">
@@ -106,11 +385,26 @@
   </div>
 </div>
 
+
+
+
+
+
+
 <script>
     $('#js-delete-user').click(function(e){
         if(!confirm('You are about to delete a user, continue?')){
             e.preventDefault();
         }
+    });
+
+
+
+
+
+
+    $('.hour').click(function(){
+        $(this).toggleClass('hour--active');
     });
 
 </script>

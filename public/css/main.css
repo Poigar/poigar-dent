@@ -12,6 +12,10 @@
 .border__3 {
   border-radius: 3px !important; }
 
+.modal-lg2 {
+  width: 80vw !important;
+  max-width: 80vw; }
+
 body {
   background-color: #e6e6e6; }
 
@@ -40,5 +44,57 @@ body {
     color: #3a3a3a; }
 .employee .action__red i {
   color: #ad4444; }
+
+.pattern__wrapper .legends {
+  padding-left: 50px;
+  font-size: 0.8em;
+  display: flex;
+  margin-bottom: 5px; }
+  .pattern__wrapper .legends span {
+    flex-grow: 1;
+    text-align: center;
+    color: #3a3a3a; }
+.pattern__wrapper .day {
+  padding: 10px 0px;
+  display: flex; }
+  .pattern__wrapper .day span {
+    flex-shrink: 1;
+    text-align: left;
+    width: 50px;
+    font-weight: bold;
+    color: #3a3a3a; }
+  .pattern__wrapper .day .day__hours {
+    display: flex;
+    flex-grow: 1; }
+    .pattern__wrapper .day .day__hours .hour {
+      flex-grow: 1;
+      background-color: #cacaca;
+      transition-duration: 0.25s;
+      cursor: pointer;
+      height: 30px; }
+      .pattern__wrapper .day .day__hours .hour:hover {
+        background-color: #e4e4e4; }
+    .pattern__wrapper .day .day__hours .hour--active {
+      background-color: #5eb471; }
+      .pattern__wrapper .day .day__hours .hour--active:hover {
+        background-color: #5eb471; }
+    .pattern__wrapper .day .day__hours .hour:first-child {
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px; }
+    .pattern__wrapper .day .day__hours .hour:last-child {
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px; }
+
+.legends__meanings {
+  display: block; }
+  .legends__meanings .legends__meanings__item {
+    display: inline-block;
+    background-color: #5eb471;
+    color: white;
+    padding: 5px 10px;
+    margin-left: 10px;
+    border-radius: 3px; }
+  .legends__meanings .gray {
+    background-color: #bdbdbd; }
 
 /*# sourceMappingURL=main.css.map */

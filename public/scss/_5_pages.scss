@@ -37,3 +37,82 @@
         }
     }
 }
+
+.pattern__wrapper{
+
+    .legends{
+        padding-left: 50px;
+        font-size: 0.8em;
+        display: flex;
+        margin-bottom: 5px;
+        span{
+            flex-grow: 1;
+            text-align: center;
+            color: $color__gray;
+        }
+    }
+
+    .day{
+        // border: 1px dashed gray;
+        padding: 10px 0px;
+        display: flex;
+        span{
+            flex-shrink: 1;
+            text-align: left;
+            width: 50px;
+            font-weight: bold;
+            color: $color__gray;
+        }
+        .day__hours{
+            display: flex;
+            flex-grow: 1;
+            // border: 2px solid darken(rgb(202, 202, 202),5);
+            // border-radius: 3px;
+            
+            .hour{
+                flex-grow: 1;
+                background-color: rgb(202, 202, 202);
+                transition-duration: 0.25s;
+                cursor: pointer;
+                height: 30px;
+                
+                &:hover{
+                    background-color: lighten(rgb(202, 202, 202),10);
+                }
+            }
+
+            .hour--active{
+                background-color: $color__green;
+                &:hover{
+                    background-color: $color__green;
+                }
+            }
+
+            .hour:first-child{
+                border-top-left-radius: 3px;
+                border-bottom-left-radius: 3px;
+            }
+            .hour:last-child{
+                border-top-right-radius: 3px;
+                border-bottom-right-radius: 3px;
+            }
+        }
+    }
+}
+
+.legends__meanings{
+    display: block;
+
+    .legends__meanings__item{
+        display: inline-block;
+        background-color: $color__green;
+        color: white;
+        padding: 5px 10px;
+        margin-left:10px;
+        border-radius: 3px;
+    }
+
+    .gray{
+        background-color: darken($color__gray--light,5);
+    }
+}
