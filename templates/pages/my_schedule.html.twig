@@ -12,7 +12,7 @@
                             
                             <tr class="employee">
                                 <td width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
-                                <td scope="row" data-toggle="modal" data-target="#addAppointment"></td>
+                                <td class="js-add-appointment"  data-time="{{ key }}" scope="row" data-toggle="modal" data-target="#addAppointment"></td>
                             </tr>
                             
                         {% endfor %}
@@ -53,6 +53,8 @@
                 <input type="number" class="form-control" id="duration" name="duration">
             </div>
 
+            <input type="number" name="time" id="js-time" style="display:none;">
+
             <button type="submit" class="btn btn-primary float-right">Submit</button>
 
         </form>
@@ -61,3 +63,13 @@
     </div>
   </div>
 </div>
+
+
+<script>
+
+    $('.js-add-appointment').click(function(){
+        var tmp_time = $(this).data("time");
+        $("#js-time").val(tmp_time);
+    });
+
+</script>
