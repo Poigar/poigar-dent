@@ -321,4 +321,14 @@ class PagesController extends AbstractController
         
         return $this->redirectToRoute('my_schedule');
     }
+
+    public function get_schedule_day(){
+        if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
+        if( $session->get('user_permission', -1) == 1 ) return $this->redirectToRoute('schedule');
+
+        $request = Request::createFromGlobals();
+        $date = $request->query->get('date');
+
+        return $this->redirectToRoute('my_schedule', array('date' => $date));
+    }
 }
