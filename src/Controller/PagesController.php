@@ -197,9 +197,9 @@ class PagesController extends AbstractController
         $user = $this->getUserById($user_id);
 
         $date = $request->query->get('date',date("Y-m-d"));
-        /*if( !$date || $date="" || $date===NULL ){
+        if( !$date || $date="" || $date===NULL ){
             $date = date("Y-m-d");
-        }*/
+        }
 
         $sameDoctorAppointments = $repository->findBy(
             ['doctor' => $user_id]
