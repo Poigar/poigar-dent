@@ -22,6 +22,20 @@
 .wide {
   width: 100%; }
 
+.bold {
+  font-weight: bold; }
+
+.text--green {
+  color: #489258; }
+
+.text--dark-gray {
+  color: #707070; }
+
+.cell--centered {
+  display: table-cell;
+  vertical-align: middle !important;
+  text-align: center; }
+
 body {
   background-color: #e6e6e6; }
 
