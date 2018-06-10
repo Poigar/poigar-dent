@@ -249,7 +249,7 @@ class PagesController extends AbstractController
 
         //die(":: ".$date);
 
-        return $this->redirectToRoute('my_schedule');
+        return $this->redirectToRoute('my_schedule', array('date' => $date));
     }
 
 
@@ -269,12 +269,26 @@ class PagesController extends AbstractController
 
         $user = $this->getUserById($user_id);
 
-        $date = $request->query->get('date');
+        $date = $request->query->get('date',date("Y-m-d"));
+        if( $date=="" || $date===NULL ){
+            $date = date("Y-m-d");
+        }
 
-        $sameDayAppointments = $repository->findBy(
-            ['doctor' => $user_id],
-            ['date' => $date]
+        $sameDoctorAppointments = $repository->findBy(
+            ['doctor' => $user_id]
         );
+
+        $sameDayAppointments = array();
+
+        foreach($sameDoctorAppointments as $appointment){
+            if( $appointment->getId() == $id ) continue;
+
+            $d = getdate( strtotime($date) );
+            $d2 = getdate( ($appointment->getDate())->getTimestamp() );
+            if( $d["year"]==$d2["year"] && $d["mon"]==$d2["mon"] && $d["mday"]==$d2["mday"] ){
+                array_push( $sameDayAppointments, $appointment );
+            }
+        }
 
         $s = $request->query->get('time');
         $b = $s + $request->query->get('duration') - 1;
@@ -298,17 +312,16 @@ class PagesController extends AbstractController
         if( $conflict==1 ) return $this->redirectToRoute('my_schedule', array('error' => 'time_reserved'));
         if( $conflict==2 ) return $this->redirectToRoute('my_schedule', array('error' => 'past_midnight'));
 
-        $toBeEdited = new Employee();
         $toBeEdited->setName( $request->query->get('name') );
         $toBeEdited->setDoctor( $user_id );
-        $toBeEdited->setDate( $date );
+        $toBeEdited->setDate( \DateTime::createFromFormat('Y-m-d', $date) );
         $toBeEdited->setTime( $request->query->get('time') );
         $toBeEdited->setDuration( $request->query->get('duration') );
         
         $entityManager->persist($toBeEdited);
         $entityManager->flush();
 
-        return $this->redirectToRoute('my_schedule');
+        return $this->redirectToRoute('my_schedule', array('date' => $date));
     }
 
     public function delete_appointment_action(SessionInterface $session, $id){
