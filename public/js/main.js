@@ -43,3 +43,22 @@ function save_pattern(user_id){
 
     window.location = "edit_employee_pattern_action/"+user_id+"?pattern="+pattern;
 }
+
+function set_working_hours(day,){
+    day--;
+    if(day<0) day=6;
+
+    var pattern = $(".hidden_pattern").html();
+    var pattern_today = "";
+
+    for(var i=day*7;i<(day*7 + 24);i++){
+        pattern_today = pattern_today+pattern[i];
+    }
+
+    for(var i=0;i<24;i++){
+        if(pattern_today[i] == "0"){
+            $('.js-time-row'+i).addClass('table-active');
+        }
+    }
+
+}

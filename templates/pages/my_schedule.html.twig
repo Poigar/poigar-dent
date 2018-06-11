@@ -4,6 +4,8 @@
 <div class="wrapper__main margin__under-navbar">
     <div class="container">
 
+        <span style="display:none;" class="hidden_pattern">{{ user.schedulePattern }}</span>
+
         <div class="alert alert-light alert-dismissible fade show" role="alert">
             <strong>Welcome, {{ user.firstName|e }} {{ user.lastName|e }}!</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -38,7 +40,7 @@
 
                                 {% if(appointment.time == key) %}
                                 
-                                    <tr class="employee table-success" data-toggle="modal" data-target="#editAppointment{{appointment.time}}">
+                                    <tr class="js-time-row{{ key }} table-success" data-toggle="modal" data-target="#editAppointment{{appointment.time}}">
                                         <td class="bold text--green" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
                                         <td rowspan="{{ appointment.duration }}" class="js-add-appointment text--green cell--centered"  data-time="{{ key }}" scope="row">Appointment for {{ appointment.name|e }}.</td>
                                     </tr>
@@ -85,6 +87,7 @@
 
                                                 </form>
 
+
                                             </div>
                                             </div>
                                         </div>
@@ -99,14 +102,14 @@
                             {% if(appointmentSet != true) %}
 
                                 {% if(durationCounter == 0) %}
-                                    <tr class="employee">
+                                    <tr class="js-time-row{{ key }}">
                                         <td class="text--dark-gray" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
                                         <td class="js-add-appointment text--dark-gray"  data-time="{{ key }}" scope="row" data-toggle="modal" data-target="#addAppointment"></td>
                                     </tr>
                                 {% endif %}
 
                                 {% if(durationCounter > 0) %}
-                                    <tr class="employee table-success">
+                                    <tr class="js-time-row{{ key }} table-success">
                                         <td class="bold text--green" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
                                     </tr>
 
@@ -118,6 +121,7 @@
                             
                         {% endfor %}
 
+                        <script>set_working_hours({{ wday }})</script>
 
                     </tbody>
                 </table>
