@@ -13,13 +13,14 @@ function getUrlParameter(sParam) {
     }
 };
 
-function load_pattern(user_id, pattern){
-    console.log(user_id);
+function load_pattern(user_id,){
     var pattern_wrapper = document.getElementById('pattern_'+user_id);
-
+    
     var hours = pattern_wrapper.getElementsByClassName('hour');
+    
+    pattern = $('.hidden_pattern_'+user_id).html();
 
-    pattern = pattern.toString();
+    console.log(pattern);
     for(var i=0; i<hours.length; i++){
         if(pattern[i] == "1"){
             $(hours[i]).addClass('hour--active');

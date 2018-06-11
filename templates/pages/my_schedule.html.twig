@@ -4,6 +4,13 @@
 <div class="wrapper__main margin__under-navbar">
     <div class="container">
 
+        <div class="alert alert-light alert-dismissible fade show" role="alert">
+            <strong>Welcome, {{ user.firstName|e }} {{ user.lastName|e }}!</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
         <div class="card mb-2">
             <div class="card-body">
             <form action="{{ path('get_schedule_day') }}" class="rmb form-inline">
@@ -17,10 +24,11 @@
 
         <div class="card mb-5">
             <div class="card-body">
-                <table class="table table-striped table-bordered table-hover">
+                <table class="table table-striped table-bordered table-hover rmb">
                     <tbody>
 
                         {% set durationCounter = 0 %}
+                        {# {% set appointmentsCount = appointments|size %} #}
 
                         {% for key in range(0,23) %}
 
@@ -29,12 +37,14 @@
                             {% for appointment in appointments %}
 
                                 {% if(appointment.time == key) %}
+                                
                                     <tr class="employee table-success" data-toggle="modal" data-target="#editAppointment{{appointment.time}}">
                                         <td class="bold text--green" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
                                         <td rowspan="{{ appointment.duration }}" class="js-add-appointment text--green cell--centered"  data-time="{{ key }}" scope="row">Appointment for {{ appointment.name|e }}.</td>
                                     </tr>
                                     {% set appointmentSet = true %}
                                     {% set durationCounter = appointment.duration-1 %}
+
 
 
 
@@ -107,6 +117,7 @@
                             {% endif %}
                             
                         {% endfor %}
+
 
                     </tbody>
                 </table>
