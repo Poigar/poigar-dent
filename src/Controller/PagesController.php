@@ -188,7 +188,8 @@ class PagesController extends AbstractController
         $request = Request::createFromGlobals();
         //$date = $request->query->get('date', date("Y-m-d"));
         $date = date("Y-m-d");
-        $users = $repository->findAll();
+        $repositoryEmployee = $this->getDoctrine()->getRepository(Employee::class);
+        $users = $repositoryEmployee->findAll();
 
         
         $allAppointments = $repository->findAll();
