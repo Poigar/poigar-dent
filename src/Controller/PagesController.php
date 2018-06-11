@@ -222,6 +222,7 @@ class PagesController extends AbstractController
             'controller_name' => 'PagesController',
             'appointments' => $appointments,
             'user' => $user,
+            'today_date' => date("Y-m-d"),
             'wday' => getdate( strtotime($date) )['wday']
         ]);
     }
