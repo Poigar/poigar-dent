@@ -66,8 +66,13 @@
                                                 <form action="{{ path('edit_appointment_action', {'id': appointment.id}) }}">
 
                                                     <div class="form-group">
-                                                        <label for="name">Patient's full name</label>
-                                                        <input type="text" class="form-control" id="name" name="name" value="{{ appointment.name }}">
+                                                        <label for="type">Type of Appointment</label>
+                                                        <input type="text" class="form-control" id="type" name="type" value="{{ appointment.type }}" required>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="name">Patient's Full name</label>
+                                                        <input type="text" class="form-control" id="name" name="name" value="{{ appointment.name }}" required>
                                                     </div>
 
                                                     <div class="form-group">
@@ -77,7 +82,7 @@
 
                                                     <div class="form-group">
                                                         <label for="duration">Hour</label>
-                                                        <input type="number" class="form-control" name="time" value="{{ appointment.time }}" min="0">
+                                                        <input type="number" class="form-control" name="time" value="{{ appointment.time }}" min="0" required>
                                                     </div>
 
                                                     <input type="text" name="date" style="display:none;" class="js-date-edit">
@@ -150,8 +155,13 @@
         <form action="{{ path('add_appointment_action') }}">
 
             <div class="form-group">
-                <label for="name">Patient's full name</label>
-                <input type="text" class="form-control" id="name" name="name">
+                <label for="type">Type of Appointment</label>
+                <input type="text" class="form-control" id="type" name="type" required>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Patient's Full name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
             </div>
 
             <div class="form-group">
@@ -159,7 +169,7 @@
                 <input type="number" class="form-control" id="duration" name="duration" min="1" value="1" required>
             </div>
 
-            <input type="number" name="time" id="js-time" style="display:none;" min="0">
+            <input type="number" name="time" id="js-time" style="display:none;" min="0" required>
 
             <input type="text" name="date" id="js-date" style="display:none;">
 

@@ -298,6 +298,7 @@ class PagesController extends AbstractController
         $newAppointment->setDate( \DateTime::createFromFormat('Y-m-d', $date) );
         $newAppointment->setTime( $request->query->get('time') );
         $newAppointment->setDuration( $request->query->get('duration') );
+        $newAppointment->setType( $request->query->get('type') );
         
         $entityManager->persist($newAppointment);
         $entityManager->flush();
@@ -371,6 +372,7 @@ class PagesController extends AbstractController
         $toBeEdited->setDate( \DateTime::createFromFormat('Y-m-d', $date) );
         $toBeEdited->setTime( $request->query->get('time') );
         $toBeEdited->setDuration( $request->query->get('duration') );
+        $toBeEdited->setType( $request->query->get('type') );
         
         $entityManager->persist($toBeEdited);
         $entityManager->flush();
