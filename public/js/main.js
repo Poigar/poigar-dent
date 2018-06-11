@@ -51,7 +51,7 @@ function set_working_hours(day,){
     var pattern = $(".hidden_pattern").html();
     var pattern_today = "";
 
-    for(var i=day*7;i<(day*7 + 24);i++){
+    for(var i=day*24;i<(day*24 + 24);i++){
         pattern_today = pattern_today+pattern[i];
     }
 
