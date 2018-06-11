@@ -46,7 +46,7 @@
                                 {% if(appointment.time == key) %}
                                 
                                     <tr class="js-time-row{{ key }} table-appointment pointer" data-toggle="modal" data-target="#editAppointment{{appointment.time}}">
-                                        <td class="bold text--green" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
+                                        <td class=" text--green" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
                                         <td rowspan="{{ appointment.duration }}" class="js-add-appointment text--green cell--centered"  data-time="{{ key }}" scope="row">{{ appointment.type|e }} for {{ appointment.name|e }}.</td>
                                     </tr>
                                     {% set appointmentSet = true %}
@@ -72,7 +72,7 @@
 
                                                     <div class="form-group">
                                                         <label for="type">Type of Appointment</label>
-                                                        <input type="text" class="form-control" id="type" name="type" value="{{ appointment.type }}" required>
+                                                        <input autofocus type="text" class="form-control" id="type" name="type" value="{{ appointment.type }}" required>
                                                     </div>
 
                                                     <div class="form-group">
@@ -113,14 +113,14 @@
 
                                 {% if(durationCounter == 0) %}
                                     <tr class="js-time-row{{ key }} pointer">
-                                        <td class="text--dark-gray bold" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
+                                        <td class="text--dark-gray " width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
                                         <td class="js-add-appointment text--dark-gray"  data-time="{{ key }}" scope="row" data-toggle="modal" data-target="#addAppointment"></td>
                                     </tr>
                                 {% endif %}
 
                                 {% if(durationCounter > 0) %}
                                     <tr class="js-time-row{{ key }} table-appointment pointer">
-                                        <td class="bold text--green" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
+                                        <td class=" text--green" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
                                     </tr>
 
                                     {% set durationCounter = durationCounter-1 %}
@@ -161,7 +161,7 @@
 
             <div class="form-group">
                 <label for="type">Type of Appointment</label>
-                <input type="text" class="form-control" id="type" name="type" required>
+                <input autofocus type="text" class="form-control" id="type" name="type" required>
             </div>
 
             <div class="form-group">

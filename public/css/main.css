@@ -39,8 +39,6 @@
 .table-striped--gray {
   color: white;
   background-image: repeating-linear-gradient(50deg, #e6e6e6, #e6e6e6 6px, whitesmoke 6px, whitesmoke 15px); }
-  .table-striped--gray th, .table-striped--gray td {
-    font-weight: bold; }
 
 .table-appointment {
   color: white; }
@@ -150,9 +148,5 @@ body {
 
 .schedule_table td {
   padding: 0.2rem 0.8rem; }
-
-.schedule_name {
-  color: #3a3a3a;
-  text-align: center; }
 
 /*# sourceMappingURL=main.css.map */

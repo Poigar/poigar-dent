@@ -6,9 +6,10 @@
         <div class="grid__schedule">
 
             {% for user in users %}
+            {% if user.post != "Admin" %}
                 <div class="card mb-5">
                     <div class="card-body">
-                        <h4 class="card-title">{{ user.id|e }}</h4>
+                        <h4 class="card-title mb-4">{{ user.firstName|e }} {{ user.lastName }}<br><small style="color:gray;">{{ user.post }}</small></h4>
 
                         <table class="table table-bordered rmb schedule_table">
                         <tbody>
@@ -21,10 +22,10 @@
 
                                 {% for appointment in appointments %}
 
-                                    {% if(appointment.time == key) %}
+                                    {% if(appointment.time == key and appointment.doctor == user.id) %}
                                     
                                         <tr class="js-time-row{{ key }} table-appointment" data-toggle="modal" data-target="#editAppointment{{appointment.time}}">
-                                            <td class="bold text--green" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
+                                            <td class="text--green" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
                                             <td rowspan="{{ appointment.duration }}" class="js-add-appointment text--green cell--centered"  data-time="{{ key }}" scope="row">{{ appointment.type|e }} for {{ appointment.name|e }}.</td>
                                         </tr>
                                         {% set appointmentSet = true %}
@@ -40,14 +41,14 @@
 
                                     {% if(durationCounter == 0) %}
                                         <tr class="js-time-row{{ key }}">
-                                            <td class="text--dark-gray bold" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
+                                            <td class="text--dark-gray" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
                                             <td class="js-add-appointment text--dark-gray"  data-time="{{ key }}" scope="row" data-toggle="modal" data-target="#addAppointment"></td>
                                         </tr>
                                     {% endif %}
 
                                     {% if(durationCounter > 0) %}
                                         <tr class="js-time-row{{ key }} table-appointment">
-                                            <td class="bold text--green" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
+                                            <td class="text--green" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
                                         </tr>
 
                                         {% set durationCounter = durationCounter-1 %}
@@ -62,6 +63,7 @@
                         </table>
                     </div>
                 </div>
+            {% endif %}
             {% endfor %}
 
         </div>

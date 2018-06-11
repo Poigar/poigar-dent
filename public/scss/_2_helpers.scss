@@ -36,9 +36,6 @@
 
 .table-striped--gray{
     color: rgb(255, 255, 255);
-    th, td{
-        font-weight: bold;
-    }
     background-image: repeating-linear-gradient(50deg, lighten(#ccc,10), lighten(#ccc,10) 6px, lighten(#dbdbdb,10) 6px, lighten(#dbdbdb,10) 15px);
 }
 
