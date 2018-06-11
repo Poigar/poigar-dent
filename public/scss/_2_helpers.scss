@@ -39,8 +39,18 @@
     th, td{
         font-weight: bold;
     }
-    background-image: repeating-linear-gradient(50deg, #ccc, #ccc 6px, #dbdbdb 6px, #dbdbdb 15px);
+    background-image: repeating-linear-gradient(50deg, lighten(#ccc,10), lighten(#ccc,10) 6px, lighten(#dbdbdb,10) 6px, lighten(#dbdbdb,10) 15px);
 }
 
+.table-appointment{
+    // background: rgba(98, 120, 194, 0.651);
+    color: white;
+
+    th, td{
+        background: rgba(109, 147, 230, 0.904);
+        // color: darken(rgb(131, 149, 211),20);
+        color: white;
+    }
+}
 
 .pointer{cursor: pointer;}

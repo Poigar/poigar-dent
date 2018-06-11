@@ -38,9 +38,15 @@
 
 .table-striped--gray {
   color: white;
-  background-image: repeating-linear-gradient(50deg, #ccc, #ccc 6px, #dbdbdb 6px, #dbdbdb 15px); }
+  background-image: repeating-linear-gradient(50deg, #e6e6e6, #e6e6e6 6px, whitesmoke 6px, whitesmoke 15px); }
   .table-striped--gray th, .table-striped--gray td {
     font-weight: bold; }
+
+.table-appointment {
+  color: white; }
+  .table-appointment th, .table-appointment td {
+    background: rgba(109, 147, 230, 0.904);
+    color: white; }
 
 .pointer {
   cursor: pointer; }
