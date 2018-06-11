@@ -57,6 +57,12 @@ body {
 * {
   outline: none; }
 
+.grid__schedule {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 50px;
+  grid-row-gap: 100px; }
+
 .login-box {
   min-width: 25%;
   position: relative; }
@@ -141,5 +147,12 @@ body {
   bottom: 20px;
   width: 60px;
   opacity: 0.4; }
+
+.schedule_table td {
+  padding: 0.2rem 0.8rem; }
+
+.schedule_name {
+  color: #3a3a3a;
+  text-align: center; }
 
 /*# sourceMappingURL=main.css.map */
