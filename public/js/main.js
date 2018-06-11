@@ -14,9 +14,16 @@ function getUrlParameter(sParam) {
 };
 
 function load_pattern(user_id, pattern){
+    console.log(user_id);
+    var pattern_wrapper = document.getElementById('pattern_'+user_id);
 
-    for(var i=0; i<pattern.length; i++){
-        console.log(i);
+    var hours = pattern_wrapper.getElementsByClassName('hour');
+
+    pattern = pattern.toString();
+    for(var i=0; i<hours.length; i++){
+        if(pattern[i] == "1"){
+            $(hours[i]).addClass('hour--active');
+        } 
     }
 }
 
