@@ -216,9 +216,12 @@ class PagesController extends AbstractController
             }
         }
 
+        $user = $this->getUserById($user_id);
+
         return $this->render('pages/my_schedule.html.twig', [
             'controller_name' => 'PagesController',
             'appointments' => $appointments,
+            'user' => $user,
             'wday' => getdate( strtotime($date) )['wday']
         ]);
     }
