@@ -219,6 +219,7 @@ class PagesController extends AbstractController
         return $this->render('pages/my_schedule.html.twig', [
             'controller_name' => 'PagesController',
             'appointments' => $appointments,
+            'wday' => getdate( strtotime($date) )['wday']
         ]);
     }
 
