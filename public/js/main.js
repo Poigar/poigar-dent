@@ -57,7 +57,7 @@ function set_working_hours(day,){
 
     for(var i=0;i<24;i++){
         if(pattern_today[i] == "0"){
-            $('.js-time-row'+i).addClass('table-active');
+            $('.js-time-row'+i).addClass('table-striped--gray');
         }
     }
 

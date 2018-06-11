@@ -36,6 +36,15 @@
   vertical-align: middle !important;
   text-align: center; }
 
+.table-striped--gray {
+  color: white;
+  background-image: repeating-linear-gradient(50deg, #ccc, #ccc 6px, #dbdbdb 6px, #dbdbdb 15px); }
+  .table-striped--gray th, .table-striped--gray td {
+    font-weight: bold; }
+
+.pointer {
+  cursor: pointer; }
+
 body {
   background-color: #e6e6e6; }
 
