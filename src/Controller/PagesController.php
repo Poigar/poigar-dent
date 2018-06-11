@@ -184,12 +184,31 @@ class PagesController extends AbstractController
     public function schedule(SessionInterface $session){
         if( !($this->checkIfLoggedIn($session)) ) return $this->redirectToRoute('login');
 
-        $repository = $this->getDoctrine()->getRepository(Employee::class);
+        $repository = $this->getDoctrine()->getRepository(Appointment::class);
+        $request = Request::createFromGlobals();
+        //$date = $request->query->get('date', date("Y-m-d"));
+        $date = date("Y-m-d");
         $users = $repository->findAll();
+
+        
+        $allAppointments = $repository->findAll();
+
+        $appointments = array();
+
+        foreach($allAppointments as $appointment){
+            $d = getdate( strtotime($date) );
+            $d2 = getdate( ($appointment->getDate())->getTimestamp() );
+            if( $d["year"]==$d2["year"] && $d["mon"]==$d2["mon"] && $d["mday"]==$d2["mday"] ){
+                array_push( $appointments, $appointment );
+            }
+        }
 
         return $this->render('pages/schedule.html.twig', [
             'controller_name' => 'PagesController',
-            'users' => $users,
+            'appointments' => $appointments,
+            'user' => $users,
+            'today_date' => date("Y-m-d"),
+            'wday' => getdate( strtotime($date) )['wday']
         ]);
     }
 
