@@ -53,7 +53,7 @@
                                 
                                     <tr class="js-time-row{{ key }} table-appointment pointer" data-toggle="modal" data-target="#editAppointment{{appointment.time}}">
                                         <td class=" text--green" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
-                                        <td rowspan="{{ appointment.duration }}" class="js-add-appointment text--green cell--centered"  data-time="{{ key }}" scope="row">{{ appointment.type|e }} for {{ appointment.name|e }}.</td>
+                                        <td rowspan="{{ appointment.duration }}" class="js-add-appointment text--green cell--centered"  data-time="{{ key }}" scope="row">{{ appointment.type|e }} for {{ appointment.name|e }}</td>
                                     </tr>
                                     {% set appointmentSet = true %}
                                     {% set durationCounter = appointment.duration-1 %}

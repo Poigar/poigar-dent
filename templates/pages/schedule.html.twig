@@ -9,6 +9,8 @@
             {% if user.post != "Admin" %}
                 <div class="card mb-5">
                     <div class="card-body">
+                        <span style="display:none;" class="hidden_pattern_{{ user.id }}">{{ user.schedulePattern }}</span>
+
                         <h4 class="card-title mb-4">{{ user.firstName|e }} {{ user.lastName }}<br><small style="color:gray;">{{ user.post }}</small></h4>
 
                         <table class="table table-bordered rmb schedule_table">
@@ -24,9 +26,9 @@
 
                                     {% if(appointment.time == key and appointment.doctor == user.id) %}
                                     
-                                        <tr class="js-time-row{{ key }} table-appointment" data-toggle="modal" data-target="#editAppointment{{appointment.time}}">
+                                        <tr class="js-time-row{{ key }}_{{ user.id }} table-appointment" data-toggle="modal" data-target="#editAppointment{{appointment.time}}">
                                             <td class="text--green" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
-                                            <td rowspan="{{ appointment.duration }}" class="js-add-appointment text--green cell--centered"  data-time="{{ key }}" scope="row">{{ appointment.type|e }} for {{ appointment.name|e }}.</td>
+                                            <td rowspan="{{ appointment.duration }}" class="js-add-appointment text--green cell--centered"  data-time="{{ key }}" scope="row">{{ appointment.type|e }} for {{ appointment.name|e }}</td>
                                         </tr>
                                         {% set appointmentSet = true %}
                                         {% set durationCounter = appointment.duration-1 %}
@@ -40,14 +42,14 @@
                                 {% if(appointmentSet != true) %}
 
                                     {% if(durationCounter == 0) %}
-                                        <tr class="js-time-row{{ key }}">
+                                        <tr class="js-time-row{{ key }}_{{ user.id }}">
                                             <td class="text--dark-gray" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
                                             <td class="js-add-appointment text--dark-gray"  data-time="{{ key }}" scope="row" data-toggle="modal" data-target="#addAppointment"></td>
                                         </tr>
                                     {% endif %}
 
                                     {% if(durationCounter > 0) %}
-                                        <tr class="js-time-row{{ key }} table-appointment">
+                                        <tr class="js-time-row{{ key }}_{{ user.id }} table-appointment">
                                             <td class="text--green" width="10%" align="center" scope="row">{% if(key<10) %}0{% endif %}{{ key }}:00</td>
                                         </tr>
 
@@ -57,7 +59,9 @@
 
                                 {% endif %}
                                 
-                            {% endfor %}
+                        {% endfor %}
+
+                        <script> set_working_hours({{ wday }}, {{ user.id }}) </script>
 
                             </tbody>
                         </table>
