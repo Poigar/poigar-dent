@@ -6,8 +6,14 @@
 
         <span style="display:none;" class="hidden_pattern">{{ user.schedulePattern }}</span>
 
-        <div class="alert alert-light alert-dismissible fade show" role="alert">
-            <strong>Welcome, {{ user.firstName|e }} {{ user.lastName|e }}!</strong>
+        <div id="crossingAppointmentAlert" style="display:none;" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <span>The appointment could not be added because of other appointments at that time!</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div id="workPastMidnightAlert" style="display:none;" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <span>The appointment could not be added because it would span past midnight. It is prohibited by the Almighty Dentist Wizard!</span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -183,12 +189,22 @@
 </div>
 
 
+
 <script>
 
     $(document).ready(function(){
         if(getUrlParameter('date')){
             $("#js-schedule-date").val( getUrlParameter('date') );
             $(".js-date-edit").val( getUrlParameter('date') );
+        }
+
+        if(getUrlParameter('error')){
+            if( getUrlParameter('error')=="time_reserved" ){
+                $("#crossingAppointmentAlert").show();
+            }
+            if( getUrlParameter('error')=="past_midnight" ){
+                $("#workPastMidnightAlert").show();
+            }
         }
     });
 
@@ -201,5 +217,4 @@
             $("#js-schedule-date").val( getUrlParameter('date') );
         }
     });
-
 </script>
