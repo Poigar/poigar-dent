@@ -18,6 +18,12 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
+        <div id="workInFreeTimeWarning" style="display:none;" class="alert alert-warning alert-dismissible fade show" role="alert">
+            <span>The appointment you just added spans into your out-of-work time. Please, make sure whether it is not a mistake!</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
 
         <div class="card mb-2">
             <div class="card-body">
@@ -204,6 +210,11 @@
             }
             if( getUrlParameter('error')=="past_midnight" ){
                 $("#workPastMidnightAlert").show();
+            }
+        }
+        if(getUrlParameter('warning')){
+            if( getUrlParameter('warning')=="work_in_free_time" ){
+                $("#workInFreeTimeWarning").show();
             }
         }
     });
