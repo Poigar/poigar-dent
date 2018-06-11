@@ -316,7 +316,7 @@ class PagesController extends AbstractController
         $newAppointment->setName( $request->query->get('name') );
         $newAppointment->setDoctor( $user_id );
         $newAppointment->setDate( \DateTime::createFromFormat('Y-m-d', $date) );
-        $newAppointment->setTime( $request->query->get('time') );
+        $newAppointment->setTime( $s );
         $newAppointment->setDuration( $request->query->get('duration') );
         $newAppointment->setType( $request->query->get('type') );
         
@@ -324,8 +324,20 @@ class PagesController extends AbstractController
         $entityManager->flush();
 
         //die(":: ".$date);
-
-        return $this->redirectToRoute('my_schedule', array('date' => $date));
+        
+        $pattern = $user->getSchedulePattern();
+        $delta = getdate( strtotime($date) )['wday'];
+        $delta--; if($delta==-1) $delta = 6; 
+        $freeTimeWork = false;
+        for($i = $s; $i<=$b; $i++){
+            if( $pattern[$i]==0 ){
+                $freeTimeWork = true;
+            }
+        }
+        if( $freeTimeWork )
+            return $this->redirectToRoute('my_schedule', array('date' => $date, 'warning' => 'work_in_free_time'));
+        else
+            return $this->redirectToRoute('my_schedule', array('date' => $date));
     }
 
     public function edit_appointment_action(SessionInterface $session, $id){
